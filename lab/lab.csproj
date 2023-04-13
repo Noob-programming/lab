@@ -1,0 +1,586 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C82FA722-2FB7-4216-B85A-553E14BF708D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>lab</RootNamespace>
+    <AssemblyName>lab</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Guna.UI">
+      <HintPath>..\..\..\..\Downloads\Telegram Desktop\Guna_UI_Framework_Ultimate_2.0.0.1_Downloadly.ir\Guna UI Framework Ultimate 2.0.0.1\Guna UI Framework Ultimate v2.0.0.1 Lib-Master\Guna.UI WinForms\.net 4.0\Guna.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Guna.UI2, Version=2.0.3.5, Culture=neutral, PublicKeyToken=4015e4865bda28a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Guna.UI2.WinForms.2.0.3.5\lib\net40\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Log" />
+    <Reference Include="System.IO.Pipelines, Version=6.0.0.3, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="customer.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>customer.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLogIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogIn.Designer.cs">
+      <DependentUpon>FormLogIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HotelDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HotelDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="HotelDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HotelDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="HotelDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HotelDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="HotelDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HotelDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="HotelDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HotelDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="HotelDataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HotelDataSet5.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="loginDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>loginDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="office.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>office.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Printer.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="repo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>repo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Room.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Room.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="User Control\frmPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Control\frmPrint.Designer.cs">
+      <DependentUpon>frmPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\UserControlEmployee.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\UserControlEmployee.Designer.cs">
+      <DependentUpon>UserControlEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\UserControlCustomers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\UserControlCustomers.Designer.cs">
+      <DependentUpon>UserControlCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\UserControlMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\UserControlMain.Designer.cs">
+      <DependentUpon>UserControlMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\UserControlReservation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\UserControlReservation.Designer.cs">
+      <DependentUpon>UserControlReservation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\UserControlRoom.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\UserControlRoom.Designer.cs">
+      <DependentUpon>UserControlRoom.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="bin\Debug\Customer.rdlc" />
+    <EmbeddedResource Include="bin\Debug\office.rdlc" />
+    <EmbeddedResource Include="bin\Debug\repo.rdlc" />
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLogIn.resx">
+      <DependentUpon>FormLogIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="bin\Debug\Report1.rdlc" />
+    <EmbeddedResource Include="User Control\frmPrint.resx">
+      <DependentUpon>frmPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\UserControlEmployee.resx">
+      <DependentUpon>UserControlEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\UserControlCustomers.resx">
+      <DependentUpon>UserControlCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\UserControlMain.resx">
+      <DependentUpon>UserControlMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\UserControlReservation.resx">
+      <DependentUpon>UserControlReservation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\UserControlRoom.resx">
+      <DependentUpon>UserControlRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="customer.xsc">
+      <DependentUpon>customer.xsd</DependentUpon>
+    </None>
+    <None Include="customer.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>customer.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="customer.xss">
+      <DependentUpon>customer.xsd</DependentUpon>
+    </None>
+    <None Include="HotelDataSet.xsc">
+      <DependentUpon>HotelDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="HotelDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>HotelDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="HotelDataSet.xss">
+      <DependentUpon>HotelDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="HotelDataSet1.xsc">
+      <DependentUpon>HotelDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="HotelDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>HotelDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="HotelDataSet1.xss">
+      <DependentUpon>HotelDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="HotelDataSet2.xsc">
+      <DependentUpon>HotelDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="HotelDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>HotelDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="HotelDataSet2.xss">
+      <DependentUpon>HotelDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="HotelDataSet3.xsc">
+      <DependentUpon>HotelDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="HotelDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>HotelDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="HotelDataSet3.xss">
+      <DependentUpon>HotelDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="HotelDataSet4.xsc">
+      <DependentUpon>HotelDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="HotelDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>HotelDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="HotelDataSet4.xss">
+      <DependentUpon>HotelDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="HotelDataSet5.xsc">
+      <DependentUpon>HotelDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="HotelDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>HotelDataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="HotelDataSet5.xss">
+      <DependentUpon>HotelDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="loginDataSet.xsc">
+      <DependentUpon>loginDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="loginDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>loginDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="loginDataSet.xss">
+      <DependentUpon>loginDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="office.xsc">
+      <DependentUpon>office.xsd</DependentUpon>
+    </None>
+    <None Include="office.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>office.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="office.xss">
+      <DependentUpon>office.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="repo.xsc">
+      <DependentUpon>repo.xsd</DependentUpon>
+    </None>
+    <None Include="repo.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>repo.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="repo.xss">
+      <DependentUpon>repo.xsd</DependentUpon>
+    </None>
+    <None Include="Room.xsc">
+      <DependentUpon>Room.xsd</DependentUpon>
+    </None>
+    <None Include="Room.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Room.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Room.xss">
+      <DependentUpon>Room.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7856126.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mobile login-bro%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mobile login-amico%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mobile login-pana%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sign up-cuate%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8639414.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\807292.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mobile login-pana 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1828312.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8983865.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\My password-cuate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mobile login-pana2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\My password-cuate1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mobile login-pana.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\456212.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\552721.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7856156.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login-amico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4562121.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5527211.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\86394141.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login-amico1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mobile login-rafiki.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\86394142.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\535193.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2874802.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9055153.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\151773.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5584501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8323916.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4355228.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hotel Booking-rafiki%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hotel Booking-cuate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7996344.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\31370.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\55281.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3203071.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2460894.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3159474.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3037150.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3022148.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Work time-amico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3685999.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4994936.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1340477.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tablet login-amico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\house-xxl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\canvas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reservation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-reservation-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-customer-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-room-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-businessman-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-menu-squared-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-user-groups-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-people-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-room-501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Living room-bro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7591482.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1834583.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
