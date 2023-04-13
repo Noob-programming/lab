@@ -143,6 +143,21 @@ namespace lab.User_Control
             return s.All(x => x != string.Empty);
         }
 
+        bool chekage18()
+        {
+            var selectedDate = dtpBurthDate.Value;
+            var currentDate = DateTime.Now;
+
+            var age = currentDate.Year - selectedDate.Year;
+
+            if (currentDate.Month < selectedDate.Month || (currentDate.Month == selectedDate.Month && currentDate.Day < selectedDate.Day))
+            {
+                age--;
+            }
+
+            return age >= 18;
+
+        }
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
             if (!checksave()) MessageBox.Show("Fall all data to save");
@@ -158,6 +173,26 @@ namespace lab.User_Control
                         s.Add(" ");
                     if (s.Count < 3)
                         s.Add(" ");
+                    //check phone number is legal
+                    if (!checkphone())
+                    {
+                        MessageBox.Show(@"the phone number is unlegal");
+                        return;
+                    }
+                    //double id card
+                    if (!checkidfind())
+                    {
+                        MessageBox.Show(@"id card is double");
+                        return;
+                    }
+                    //check age of customer
+                    if (!chekage18())
+                    {
+                        MessageBox.Show(@"Age less than 18");
+                        return;
+                    }
+
+
                     var Age = dtpBurthDate.Value.ToString().Split(' ')[0];
                     var gender = crbMale.Checked ? 'M' : 'F';
 
@@ -176,6 +211,41 @@ namespace lab.User_Control
                 {
                     MessageBox.Show($"{exception}");
                 }
+            }
+        }
+
+        private bool checkphone()
+        {
+            int result;
+            try
+            {
+                var input = txtPhone.Text;
+                return int.TryParse(input, out result);
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($@"{e}");
+                return false;
+            }
+        }
+
+        private bool checkidfind()
+        {
+            try
+            {
+                var con = Sqlcon();
+                con.Open();
+                var quandary = $@"select *from Guest where [Id_identity] = {txtCardNumber.Text}";
+                var cmd = new SqlCommand(quandary, con);
+                var reader = cmd.ExecuteReader();
+                con.Close();
+                return !reader.HasRows;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($@"{e}");
+                return false;
             }
         }
 
