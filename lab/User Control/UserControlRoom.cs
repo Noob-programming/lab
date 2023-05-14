@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace lab.User_Control
@@ -59,16 +55,14 @@ namespace lab.User_Control
 
         private static SqlConnection Sqlcon()
         {
-            const string Cons =@"Data Source = ASMAALAP; Initial Catalog=Hotel; Integrated Security=True; User ID=name; Password=123456";
-            var con = new SqlConnection(Cons);
+            var con = new SqlConnection(Properties.Settings.Default.con);
             return con;
         }
-
         private int Rowduble()
         {
             var con = Sqlcon();
             con.Open();
-            var q = $@"select * from Room where RoomNumber = '{this.txtRoomNumber.Text}'";
+            var q = $@"select * from Room where RoomNumber = '{txtRoomNumber.Text}'";
             var cmd = new SqlCommand(q, con);
             var da = new SqlDataAdapter(cmd);
             var dt = new DataTable();
@@ -78,11 +72,11 @@ namespace lab.User_Control
 
         private bool CheckAdd()
         {
-            var a = this.cbxStatus.Checked ? "1" : "0";
+            var a = cbxStatus.Checked ? "1" : "0";
             var list = new List<string>()
                            {
-                               this.txtRoomNumber.Text,this.txtAvilableBed.Text,
-                               this.txtPrice.Text,this.txtType.Text,a
+                               txtRoomNumber.Text,txtAvilableBed.Text,
+                               txtPrice.Text,txtType.Text,a
                            };
 
             return list.All(x => x != string.Empty);
@@ -101,19 +95,19 @@ namespace lab.User_Control
         {
             try
             {
-                if (!this.CheckAdd()) { MessageBox.Show("fall the data"); return; }
-                if (this.Rowduble() != 0) { MessageBox.Show("double number of room"); return; }
+                if (!CheckAdd()) { MessageBox.Show("fall the data"); return; }
+                if (Rowduble() != 0) { MessageBox.Show("double number of room"); return; }
                 var con = Sqlcon();
                 con.Open();
-                var s = this.cbxStatus.Checked ? "1" : "0";
+                var s = cbxStatus.Checked ? "1" : "0";
                 var q = $@"INSERT INTO [dbo].[Room] ([RoomNumber],[RoomType],[SizeRoom],[Price],[Viable]) 
-                            VALUES('{this.txtRoomNumber.Text}','{this.txtType.Text}','{this.txtAvilableBed.Text}
-                            ','{this.txtPrice.Text}','{s}')";
+                            VALUES('{txtRoomNumber.Text}','{txtType.Text}','{txtAvilableBed.Text}
+                            ','{txtPrice.Text}','{s}')";
                 var cmd = new SqlCommand(q, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
                 MessageBox.Show("تمت الإضافة بنجاح", "تمت العملية بنجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.ShowGrid();
+                ShowGrid();
             }
             catch (Exception exception)
             {
@@ -130,43 +124,43 @@ namespace lab.User_Control
             var db = new SqlDataAdapter(cmd);
             var datable = new DataTable();
             db.Fill(datable);
-            this.dgvRoom.DataSource = datable;
+            dgvRoom.DataSource = datable;
             con.Close();
         }
 
         private void UserControlRoom_Load(object sender, EventArgs e)
         {
-            this.ShowGrid();
+            ShowGrid();
         }
         private string roomid = null;
 
         private void dgvRoom_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.roomid = this.dgvRoom.Rows[e.RowIndex].Cells[0].Value.ToString();
-            this.txtMDRoomNumber.Text = this.dgvRoom.Rows[e.RowIndex].Cells[1].Value.ToString();
-            this.txtMDType.Text = this.dgvRoom.Rows[e.RowIndex].Cells[2].Value.ToString();
-            this.txtMDAvilableBed.Text = this.dgvRoom.Rows[e.RowIndex].Cells[3].Value.ToString();
-            this.txtMDPrice.Text = this.dgvRoom.Rows[e.RowIndex].Cells[4].Value.ToString();
-            var c = this.dgvRoom.Rows[e.RowIndex].Cells[5].Value.ToString();
-            this.cbxMDStatus.Checked = c == "1";
+            roomid = dgvRoom.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txtMDRoomNumber.Text = dgvRoom.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtMDType.Text = dgvRoom.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtMDAvilableBed.Text = dgvRoom.Rows[e.RowIndex].Cells[3].Value.ToString();
+            txtMDPrice.Text = dgvRoom.Rows[e.RowIndex].Cells[4].Value.ToString();
+            var c = dgvRoom.Rows[e.RowIndex].Cells[5].Value.ToString();
+            cbxMDStatus.Checked = c == "1";
         }
 
         private void btnModify_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!this.CheckEdit()) { MessageBox.Show("fall the data"); return; }
+                if (!CheckEdit()) { MessageBox.Show("fall the data"); return; }
                 var con = Sqlcon();
                 con.Open();
-                var s = this.cbxMDStatus.Checked ? '1' : '0';
+                var s = cbxMDStatus.Checked ? '1' : '0';
                 var quarry =
-                    $@"UPDATE [dbo].[Room] SET [RoomNumber] = '{this.txtMDRoomNumber.Text}',[RoomType] = '{this.txtMDType.Text}',
-                        [SizeRoom] = '{this.txtMDAvilableBed.Text}', [Price] = '{this.txtMDPrice.Text}',
-                            [Viable] = '{s}' WHERE [RoomId] = '{this.roomid}'; ";
+                    $@"UPDATE [dbo].[Room] SET [RoomNumber] = '{txtMDRoomNumber.Text}',[RoomType] = '{txtMDType.Text}',
+                        [SizeRoom] = '{txtMDAvilableBed.Text}', [Price] = '{txtMDPrice.Text}',
+                            [Viable] = '{s}' WHERE [RoomId] = '{roomid}'; ";
                 var cmd = new SqlCommand(quarry, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
-                this.ShowGrid();
+                ShowGrid();
 
             }
             catch (Exception exception)
@@ -183,11 +177,11 @@ namespace lab.User_Control
                 {
                     var con = Sqlcon();
                     con.Open();
-                    var quarry = $@"DELETE FROM [dbo].[Room] WHERE RoomId ='{this.roomid}';";
+                    var quarry = $@"DELETE FROM [dbo].[Room] WHERE RoomId ='{roomid}';";
                     var cmd = new SqlCommand(quarry, con);
                     cmd.ExecuteNonQuery();
                     con.Close();
-                    this.ShowGrid();
+                    ShowGrid();
 
                 }
                 catch (Exception exception)
@@ -203,13 +197,13 @@ namespace lab.User_Control
             {
                 var con = Sqlcon();
                 con.Open();
-                var s = $"select *from Room where [RoomNumber] like '%{this.txtSearch.Text}%'";
+                var s = $"select *from Room where [RoomNumber] like '%{txtSearch.Text}%'";
                 var cmd = new SqlCommand(s, con);
                 cmd.ExecuteNonQuery();
                 var db = new SqlDataAdapter(cmd);
                 var datable = new DataTable();
                 db.Fill(datable);
-                this.dgvRoom.DataSource = datable;
+                dgvRoom.DataSource = datable;
                 con.Close();
             }
             catch (Exception exception)

@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace lab.User_Control
@@ -37,17 +33,15 @@ namespace lab.User_Control
             InitializeComponent();
         }
 
-        private static SqlConnection SqlCon()
+        private static SqlConnection Sqlcon()
         {
-            const string Cons =
-                @"Data Source = ASMAALAP; Initial Catalog=Hotel; Integrated Security=True; User ID=name; Password=123456";
-            var con = new SqlConnection(Cons);
+            var con = new SqlConnection(Properties.Settings.Default.con);
             return con;
         }
 
         private void AvailbleRoom()
         {
-            var con = SqlCon();
+            var con = Sqlcon();
             con.Open();
             const string Query = "SELECT * FROM[dbo].[Room] where Viable = '0'; ";
             var cmd = new SqlCommand(Query, con);
@@ -106,7 +100,7 @@ namespace lab.User_Control
                 if (checter != 1) return;
                 var star = dtpStartDate.Value.ToString(CultureInfo.InvariantCulture).Split(' ')[0];
                 var end = dtpEndDate.Value.ToString(CultureInfo.InvariantCulture).Split(' ')[0];
-                var con = SqlCon();
+                var con = Sqlcon();
                 con.Open();
                 var quarry = $@"INSERT INTO [dbo].[repo] ([GeastID], [RoomID], [StartDate], [EndDate], [amont])
         VALUES('{txtlabCardNumber.Text}', '{txtRoomNumber.Text}', '{star}', '{end}', '{txtPrice.Text}')";
@@ -126,7 +120,7 @@ namespace lab.User_Control
         {
             try
             {
-                var con = SqlCon();
+                var con = Sqlcon();
                 con.Open();
                 var quarry = $@"DELETE FROM [dbo].[repo] WHERE Id = '{id}';";
                 var cmd = new SqlCommand(quarry, con);
@@ -149,7 +143,7 @@ namespace lab.User_Control
                     MessageBox.Show(@"Fall data and update");
                     return;
                 }
-                var con = SqlCon();
+                var con = Sqlcon();
                 con.Open();
                 var quarry = $@"UPDATE [dbo].[repo]
         SET [GeastID] = '{txtMDCardNumber.Text}',[RoomID] = '{txtMDRoomNumber.Text}',
@@ -169,7 +163,7 @@ namespace lab.User_Control
         private bool checkRoom(string RoomId)
         {
             var q = $@"SELECT * FROM [dbo].[Room] where [RoomNumber] = '{RoomId}';";
-            var con = SqlCon();
+            var con = Sqlcon();
             con.Open();
             var cmd = new SqlCommand(q, con);
             cmd.ExecuteNonQuery();
@@ -200,7 +194,7 @@ namespace lab.User_Control
         }
         private void ShowGrid()
         {
-            var con = SqlCon();
+            var con = Sqlcon();
             con.Open();
             const string Query = "select * from repo";
             var cmd = new SqlCommand(Query, con);
@@ -230,7 +224,7 @@ namespace lab.User_Control
                 return;
             }
             var qu = $@"SELECT * FROM[dbo].[Room] where Viable = '0' and RoomNumber = {roomid};";
-            var cont = SqlCon();
+            var cont = Sqlcon();
             cont.Open();
             var cmd = new SqlCommand(qu, cont);
             cmd.ExecuteNonQuery();
@@ -245,7 +239,7 @@ namespace lab.User_Control
                 return;
             }
             var q = $@"UPDATE [dbo].[Room] SET [Viable] = '1' WHERE RoomNumber = '{roomid}'";
-            var con = SqlCon();
+            var con = Sqlcon();
             con.Open();
             var cms = new SqlCommand(q, con);
             cms.ExecuteNonQuery();
@@ -257,14 +251,14 @@ namespace lab.User_Control
         {
             try
             {
-                var con = SqlCon();
+                var con = Sqlcon();
                 con.Open();
-                var query = $@"select * from repo where GeastID like %'{this.txtSearch.Text}'%";
+                var query = $@"select * from repo where GeastID like %'{txtSearch.Text}'%";
                 var cmd = new SqlCommand(query, con);
                 var db = new SqlDataAdapter(cmd);
                 var datable = new DataTable();
                 db.Fill(datable);
-                this.dgvReservation.DataSource = datable;
+                dgvReservation.DataSource = datable;
                 con.Close();
             }
             catch (Exception exception)

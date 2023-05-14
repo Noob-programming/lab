@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace lab.User_Control
@@ -25,7 +20,7 @@ namespace lab.User_Control
             Clear();
         }
 
-        public void Clear()
+        private void Clear()
         {
             txtEmployeeID.Clear();
             txtEmployeeName.Clear();
@@ -41,7 +36,7 @@ namespace lab.User_Control
         {
             Clear1();
         }
-        public void Clear1()
+        private void Clear1()
         {
             txtMDEmployeeID.Clear();
             txtMDEmployeeNmae.Clear();
@@ -78,8 +73,7 @@ namespace lab.User_Control
 
         private static SqlConnection Sqlcon()
         {
-            const string Cons =@"Data Source = ASMAALAP; Initial Catalog=Hotel; Integrated Security=True; User ID=name; Password=123456";
-            var con = new SqlConnection(Cons);
+            var con = new SqlConnection(Properties.Settings.Default.con);
             return con;
         }
 
@@ -191,13 +185,13 @@ namespace lab.User_Control
             var db = new SqlDataAdapter(cmd);
             var datatable = new DataTable();
             db.Fill(datatable);
-            this.dgvEmployee.DataSource = datatable;
+            dgvEmployee.DataSource = datatable;
             con.Close();
         }
 
         private void UserControlAdmin_Load(object sender, EventArgs e)
         {
-            this.showgrid();
+            showgrid();
         }
 
         private void tabPageAddEmployee_Leave(object sender, EventArgs e)
@@ -243,13 +237,13 @@ namespace lab.User_Control
             {
                 var con = Sqlcon();
                 con.Open();
-                var s = $"select *from Office where [SSN] like '%{this.txtSearch.Text}%'";
+                var s = $"select *from Office where [SSN] like '%{txtSearch.Text}%'";
                 var cmd = new SqlCommand(s, con);
                 cmd.ExecuteNonQuery();
                 var db = new SqlDataAdapter(cmd);
                 var datable = new DataTable();
                 db.Fill(datable);
-                this.dgvEmployee.DataSource = datable;
+                dgvEmployee.DataSource = datable;
                 con.Close();
             }
             catch (Exception exception)

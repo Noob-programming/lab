@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.IO;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace lab.User_Control
 {
@@ -18,10 +11,14 @@ namespace lab.User_Control
         {
             InitializeComponent();
         }
-        public void Employee()
+        private static SqlConnection Sqlcon()
         {
-            const string Cons = @"Data Source = ASMAALAP; Initial Catalog=Hotel; Integrated Security=True; User ID=name; Password=123456";
-            var con = new SqlConnection(Cons);
+            var con = new SqlConnection(Properties.Settings.Default.con);
+            return con;
+        }
+        private void Employee()
+        {
+            var con = Sqlcon();
             con.Open();
             var q = $"select *from Office";
             var cmd = new SqlCommand(q, con);
@@ -32,10 +29,9 @@ namespace lab.User_Control
             con.Close();
             labEmployeeCount.Text = dt.Rows.Count.ToString();
         }
-        public void Customer()
+        private void Customer()
         {
-            const string Cons = @"Data Source = ASMAALAP; Initial Catalog=Hotel; Integrated Security=True; User ID=name; Password=123456";
-            var con = new SqlConnection(Cons);
+            var con = Sqlcon();
             con.Open();
             var q = $"select *from Guest";
             var cmd = new SqlCommand(q, con);
@@ -44,12 +40,11 @@ namespace lab.User_Control
             var dt = new DataTable();
             da.Fill(dt);
             con.Close();
-            this.labCustomerCount.Text = dt.Rows.Count.ToString();
+            labCustomerCount.Text = dt.Rows.Count.ToString();
         }
-        public void Room()
+        private void Room()
         {
-            const string Cons = @"Data Source = ASMAALAP; Initial Catalog=Hotel; Integrated Security=True; User ID=name; Password=123456";
-            var con = new SqlConnection(Cons);
+            var con = Sqlcon();
             con.Open();
             var q = $"select *from Room";
             var cmd = new SqlCommand(q, con);
@@ -58,7 +53,7 @@ namespace lab.User_Control
             var dt = new DataTable();
             da.Fill(dt);
             con.Close();
-            this.labRoomCount.Text = dt.Rows.Count.ToString();
+            labRoomCount.Text = dt.Rows.Count.ToString();
         }
 
         private void UserControlMain_Load(object sender, EventArgs e)
